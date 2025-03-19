@@ -8,6 +8,30 @@ Antes de começar, certifique-se de ter instalado:
 - Docker (para rodar o banco de dados)
 - Docker Compose (v3.8 ou superior)
 
+## Configuração do ambiente
+O projeto utiliza um arquivo `.env` para configurar variáveis de ambiente, como a URL do banco de dados. Crie um arquivo .env na raiz do projeto e adicione o seguinte conteúdo:
+
+### 1. Renomeie o Arquivo `.env.example`
+
+```bash
+mv .env.example .env
+```
+
+### 2. Configure as Variáveis de Ambiente
+Abra o arquivo .env e preencha as variáveis de ambiente conforme necessário. Aqui está um exemplo do conteúdo do arquivo:
+
+```env
+DATABASE_URL="postgres://teste:teste@localhost:5432/comunicacao_interna"
+```
+
+Formato: `postgres://USUARIO:SENHA@HOST:PORTA/BANCO_DE_DADOS`
+
+- USUARIO: Nome do usuário do banco de dados (no caso, *teste*).
+- SENHA: Senha do banco de dados (no caso, *teste*).
+- HOST: Endereço do banco de dados (no caso, *localhost*).
+- PORTA: Porta do banco de dados (no caso, *5432*).
+- BANCO_DE_DADOS: Nome do banco de dados (no caso, *comunicacao_interna*).
+
 ## Como Rodar o Projeto
 ### 1. Clone o Repositório
 
@@ -53,7 +77,6 @@ npm run prisma:generate
 ```
 
 #### Execute as Migrações:
-
 As migrações são usadas para criar e atualizar as tabelas no banco de dados. Para criar a primeira migração, execute:
 
 ```bash
@@ -67,7 +90,6 @@ Isso irá:
 - Gerar as tabelas definidas no schema do Prisma.
 
 #### Visualizar o Banco de Dados com Prisma Studio:
-
 O Prisma Studio é uma interface gráfica para visualizar e manipular o banco de dados. Para abrir:
 
 ```bash
@@ -75,7 +97,6 @@ npx prisma studio
 ```
 
 #### Resetar o Banco de Dados:
-
 Se precisar resetar o banco de dados e aplicar todas as migrações novamente:
 
 ```bash
