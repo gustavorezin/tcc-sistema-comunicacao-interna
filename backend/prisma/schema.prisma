@@ -9,10 +9,41 @@ datasource db {
 
 model Post {
   id        String   @id @default(uuid())
-  title     String
   content   String
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("posts")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      UserRole @default(COLLABORATOR)
+  groupId   String?
+  group     Group?   @relation(fields: [groupId], references: [id])
+  posts     Post[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+enum UserRole {
+  AMIN
+  COLLABORATOR
+}
+
+model Group {
+  id        String   @id @default(uuid())
+  name      String
+  users     User[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("groups")
 }

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon",
     "prisma:generate": "npx prisma generate",
-    "prisma:migrate": "npx prisma migrate dev --name init"
+    "prisma:migrate": "npx prisma migrate dev"
   },
   "keywords": [],
   "author": "",
