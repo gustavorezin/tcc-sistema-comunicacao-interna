@@ -2,5 +2,5 @@
   "watch": ["src"],
   "ext": "ts, json",
   "ignore": ["src/**/*.test.ts"],
-  "exec": "ts-node ./src/commons/infra/http/server.ts"
+  "exec": "ts-node -r tsconfig-paths/register ./src/commons/infra/http/server.ts"
 }

@@ -2,13 +2,21 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "commonjs",
-    "outDir": "build",
-    "rootDir": "src",
+    "outDir": "./dist",
+    "rootDir": "./src",
     "baseUrl": "./",
+    "paths": {
+      //"@config/*": ["src/config/*"],
+      "@modules/*": ["src/modules/*"],
+      "@commons/*": ["src/commons/*"]
+    },
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

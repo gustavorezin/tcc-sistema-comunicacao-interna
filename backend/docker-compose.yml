@@ -2,30 +2,17 @@ version: "3.8"
 
 services:
   db:
-    image: postgres:13
-    container_name: comunicacao_db
+    image: postgres
+    restart: always
+    container_name: comunicacao_interna_db
     environment:
-      POSTGRES_USER: comunicacao
-      POSTGRES_PASSWORD: comunicacao
-      POSTGRES_DB: comunicacao
+      POSTGRES_USER: teste
+      POSTGRES_PASSWORD: teste
+      POSTGRES_DB: comunicacao_interna
     ports:
       - "5432:5432"
     volumes:
-      - comunicacao_db:/var/lib/postgresql/data
-
-  backend:
-    build: .
-    container_name: comunicacao_backend
-    ports:
-      - "5000:5000"
-      - "5555:5555"
-    environment:
-      - DATABASE_URL=postgres://comunicacao:comunicacao@db:5432/comunicacao
-    depends_on:
-      - db
-    volumes:
-      - .:/app
-    command: npm start
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
-  comunicacao_db:
+  postgres_data:

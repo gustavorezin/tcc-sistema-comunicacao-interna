@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { container } from "tsyringe";
+import { CreatePostService } from "@modules/posts/services/CreatePostService";
+import { prisma } from "@commons/infra/prisma/prismaClient";
 
 export class PostsController {
   public async index(req: Request, res: Response) {
@@ -11,9 +11,9 @@ export class PostsController {
 
   public async create(req: Request, res: Response) {
     const { title, content } = req.body;
-    const post = await prisma.post.create({
-      data: { title, content },
-    });
+    console.log("caiu aqui");
+    const createPost = container.resolve(CreatePostService);
+    const post = await createPost.execute({ title, content });
     res.status(201).json(post);
   }
 }
