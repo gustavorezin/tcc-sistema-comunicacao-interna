@@ -11,7 +11,6 @@ export class PostsController {
 
   public async create(req: Request, res: Response) {
     const { title, content } = req.body;
-    console.log("caiu aqui");
     const createPost = container.resolve(CreatePostService);
     const post = await createPost.execute({ title, content });
     res.status(201).json(post);
