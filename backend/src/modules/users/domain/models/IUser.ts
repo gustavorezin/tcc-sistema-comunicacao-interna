@@ -1,5 +1,6 @@
 import { IGroup } from "@modules/groups/domain/models/IGroup";
 import { IPost } from "@modules/posts/domain/models/IPost";
+import { UserRole } from "@prisma/client";
 
 export interface IUser {
   id: string;
@@ -7,14 +8,14 @@ export interface IUser {
   email: string;
   password: string;
   role: UserRole;
-  groupId?: string;
+  groupId?: string | null;
   group?: IGroup;
-  posts?: IPost[];
+  //posts?: IPost[];
   createdAt: Date;
   updatedAt: Date;
 }
 
-export enum UserRole {
+/* export enum UserRole {
   ADMIN = "ADMIN",
   COLLABORATOR = "COLLABORATOR",
-}
+} */
