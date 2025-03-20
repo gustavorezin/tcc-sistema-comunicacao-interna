@@ -9,10 +9,10 @@ export class PostsController {
     res.status(200).json(posts);
   }
 
-  public async create(req: Request, res: Response) {
-    const { title, content } = req.body;
+  public async create(req: Request, res: Response): Promise<any> {
+    const { content, authorId } = req.body;
     const createPost = container.resolve(CreatePostService);
-    const post = await createPost.execute({ title, content });
-    res.status(201).json(post);
+    const post = await createPost.execute({ content, authorId });
+    return res.status(201).json(post);
   }
 }

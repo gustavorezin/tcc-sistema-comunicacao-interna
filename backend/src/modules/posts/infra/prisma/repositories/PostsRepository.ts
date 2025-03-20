@@ -8,7 +8,10 @@ export class PostsRepository implements IPostsRepository {
 
   async create(dataCreatePost: ICreatePost): Promise<IPost> {
     const post = await this.repository.create({
-      data: dataCreatePost,
+      data: {
+        content: dataCreatePost.content,
+        author: { connect: { id: dataCreatePost.authorId } },
+      },
     });
     return post;
   }
